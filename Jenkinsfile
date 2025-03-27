@@ -48,25 +48,25 @@ pipeline {
                 }
             }
         }
-        stage('Creating/Destroying an EKS Cluster'){
-            steps{
-                script{
-                    dir('EKS') {
-                        sh 'terraform $action --auto-approve'
-                    }
-                }
-            }
-        }
-        stage('Deploying Nginx Application') {
-            steps{
-                script{
-                    dir('EKS/ConfigurationFiles') {
-                        sh 'aws eks update-kubeconfig --name my-eks-cluster'
-                        sh 'kubectl apply -f deployment.yaml'
-                        sh 'kubectl apply -f service.yaml'
-                    }
-                }
-            }
-        }
+        // stage('Creating/Destroying an EKS Cluster'){
+        //     steps{
+        //         script{
+        //             dir('EKS') {
+        //                 sh 'terraform $action --auto-approve'
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Deploying Nginx Application') {
+        //     steps{
+        //         script{
+        //             dir('EKS/ConfigurationFiles') {
+        //                 sh 'aws eks update-kubeconfig --name my-eks-cluster'
+        //                 sh 'kubectl apply -f deployment.yaml'
+        //                 sh 'kubectl apply -f service.yaml'
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
